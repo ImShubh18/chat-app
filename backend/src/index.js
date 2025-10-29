@@ -20,7 +20,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173", // for local development
+      "https://chat-app-delta-two-34.vercel.app", // your deployed frontend
+    ],
     credentials: true,
   })
 );
