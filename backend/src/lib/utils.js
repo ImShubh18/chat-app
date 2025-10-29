@@ -7,8 +7,8 @@ export const generateToken = (userId, res) => {
 
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: true, // always true in deployment (Render uses HTTPS)
-    sameSite: "none", // allows cross-site cookies (Vercel <-> Render)
+    secure: process.env.NODE_ENV === "production", // only true in Render
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // allow local dev
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 
